@@ -32,7 +32,7 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">LOGIN</h5>
+                    <h5 class="card-title text-center pb-0 fs-4">LOGIN - ADMIN</h5>
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
@@ -67,7 +67,7 @@
                         $hashpassword = hash('sha256', $password);
 
                         //check the username and password match in db
-                        $getUser = "SELECT * FROM users where username='$username' and password='$hashpassword'";
+                        $getUser = "SELECT * FROM admins where username='$username' and password='$hashpassword'";
                         $resultUser = $conn->query($getUser);
                       
                         //if there's data matched
@@ -79,7 +79,7 @@
                           //set session for admin - username, id
                           $_SESSION['id']         = $userData['id'];
                           $_SESSION['username']   = $userData['username'];
-                          $_SESSION['role']       = $userData['role'];
+                          $_SESSION['role']       = "admin";
           
                           //redirect to dashboard page
                           echo '<script>alert("Hi, '.$userData['name'].'!");</script>';
@@ -115,7 +115,7 @@
                   ?>
 
 
-                  <form class="row g-3 needs-validation" method="post" action="login.php">
+                  <form class="row g-3 needs-validation" method="post" action="loginAdmin.php">
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
@@ -135,10 +135,7 @@
                       <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
-                    </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Are you Admin? <a href="loginAdmin.php">Login Here</a></p>
+                      <p class="small mb-0">Are you Members? <a href="login.php">Login Here</a></p>
                     </div>
                   </form>
 

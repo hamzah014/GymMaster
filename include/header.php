@@ -1,5 +1,6 @@
 
   <?php
+    session_start();
     $systemName = "Gold Master Gym";
   ?>
   
@@ -29,3 +30,5 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">

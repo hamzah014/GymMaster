@@ -11,7 +11,7 @@
 
     }else{
         //navigate to home page if session exist
-        header("Location:index2.html");
+        header("Location:dashboard.php");
         echo 'session ada';
     }
             

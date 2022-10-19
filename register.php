@@ -16,10 +16,10 @@
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="col-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <a class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
                   <span class="d-none d-lg-block"><?php echo $systemName; ?></span>
                 </a>
@@ -95,9 +95,15 @@
 
                           $last_id = $conn->insert_id;
 
-                          $_POST = array();
+                          $sqlInsertProfile = "INSERT INTO users_profile (user_id) VALUES ('$last_id')";
+                          if ($conn->query($sqlInsertProfile) === TRUE) {
 
-                          echo '<div class="p-1 text-success"><b>Registration have been successful. Please login using your credential.'.$last_id.'</b></div>';
+                            $_POST = array();
+  
+                            echo '<div class="p-1 text-success"><b>Registration have been successful.</b></div>';
+
+                          }
+
                         } else {
                           array_push($errorMsg,"Error occurred while inserting data. Please submit the registration again.");
                         }
@@ -110,27 +116,21 @@
                     //show error message if there is any error catch
                     if(!empty($errorMsg)){
 
-                    echo '<div class="pt-1 pb-1">';
-                    echo '  <ul>';
-                    
-                    foreach($errorMsg as $key=>$value){
-                      echo '    <li class="text-danger">'.$value.'</li>';
-                    }
-                    
-                    //echo '    <li class="text-success p-1">Successfully registered.</li>';
-                    echo '  </ul>';
-                    echo '</div>';
+                      echo '<div class="pt-1 pb-1">';
+                      echo '  <ul>';
+                      
+                      foreach($errorMsg as $key=>$value){
+                        echo '    <li class="text-danger">'.$value.'</li>';
+                      }
+
+                      echo '  </ul>';
+                      echo '</div>';
 
 
                     }
                   
                   ?>
 
-                  
-
-                  <?php
-
-                  ?>
 
                   <form class="row g-3" method="post" action="register.php">
                     <div class="col-12">
