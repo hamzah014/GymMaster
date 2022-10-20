@@ -84,7 +84,7 @@
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-lungs"></i>
+                                            <i class="bi bi-person-badge"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>3,264</h6>

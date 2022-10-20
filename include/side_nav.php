@@ -15,7 +15,7 @@
             </a>
             <ul id="trainer-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
+                    <a href="trainer_register.php">
                         <i class="bi bi-circle"></i><span>Register Trainer</span>
                     </a>
                 </li>
