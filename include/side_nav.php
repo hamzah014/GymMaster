@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="trainer_list.php">
                         <i class="bi bi-circle"></i><span>List of Trainer</span>
                     </a>
                 </li>
@@ -33,7 +33,7 @@
             </a>
             <ul id="members-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
+                    <a href="member_list.php">
                         <i class="bi bi-circle"></i><span>List of Members</span>
                     </a>
                 </li>

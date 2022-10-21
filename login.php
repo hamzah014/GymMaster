@@ -100,6 +100,7 @@
                     if(!empty($errorMsg)){
                     
                       echo '<div class="pt-1 pb-1">';
+                      echo '<p class="text-danger">Please refer the error before completing the submission.</p>';
                       echo '  <ul>';
 
                       foreach($errorMsg as $key=>$value){
