@@ -38,13 +38,14 @@
                             <h5 class="card-title">Trainer Data</h5>
 
                             <!-- Table with stripped rows -->
-                            <table class="table datatable table-bordered">
+                            <table class="table datatable table-bordered table-hover">
                                 <thead>
                                     <tr class="table-dark">
                                         <th scope="col">#</th>
                                         <th scope="col">Trainer ID</th>
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Address</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -58,29 +59,34 @@
 
                                         $getTrainer = "SELECT * FROM users 
                                                         INNER JOIN users_profile ON users.id = users_profile.user_id
-                                                        where role='$role_trainer'";
+                                                        where users.role='$role_trainer'";
                                         $resulTrainer = $conn->query($getTrainer);
                 
                                         //if trainer data exist, show in list table
                                         if ($resulTrainer->num_rows > 0) {
 
-                                            $dataTrainer = $resulTrainer->fetch_assoc();
-                                            $count++;
+                                            while($dataTrainer = $resulTrainer->fetch_assoc()) {
+                                                
+                                                $count++;
+                                                
 
-                                            echo '<tr>';
-                                            echo '    <th scope="row">'.$count.'</th>';
-                                            echo '    <td>'.$dataTrainer['gen_id'].'</td>';
-                                            echo '    <td>'.$dataTrainer['name'].'</td>';
-                                            echo '    <td>'.$dataTrainer['username'].'</td>';
-                                    ?>
-                                                        <td>
-                                                            <button class="btn btn-info">Edit</button>
-                                                            <button class="btn btn-danger">Delete</button>
-                                                        </td>
-    
-                                    <?php
-                                            echo '</tr>';
+                                                echo '<tr>';
+                                                echo '    <th scope="row">'.$count.'</th>';
+                                                echo '    <td>'.$dataTrainer['gen_id'].'</td>';
+                                                echo '    <td>'.$dataTrainer['name'].'</td>';
+                                                echo '    <td>'.$dataTrainer['username'].'</td>';
+                                                echo '    <td>'.$dataTrainer['address'].'</td>';
+                                    ?>  
+                                                            <td>
+                                                                <a class="btn btn-info" href="users_edit.php?edit_id=<?php echo $dataTrainer['user_id']; ?>&edit_role=<?php echo $role_trainer; ?>">Edit</a>
+                                                                <a class="btn btn-danger" href="users_delete.php?delete_id=<?php echo $dataTrainer['user_id']; ?>&delete_role=<?php echo $role_trainer; ?>">Delete</a>
+                                                            </td>
+                                                
+                                    <?php   
+                                                echo '</tr>';
                                             
+                                            }
+
                                         }else{
 
                                             echo '<tr>';

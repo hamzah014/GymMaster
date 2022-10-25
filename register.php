@@ -61,7 +61,7 @@
                                         }
 
                                         if(empty($username) && $username==""){
-                                          array_push($errorMsg,"Please enter username.");
+                                          array_push($errorMsg,"Please enter email.");
                                         }else{
 
                                           //check the username is exist or not
@@ -70,7 +70,7 @@
 
                                           //if username is exist, add error message
                                           if ($resultUser->num_rows > 0) {
-                                            array_push($errorMsg,"Your username has been taken.");
+                                            array_push($errorMsg,"Your email has been taken.");
                                           }
 
                                         }
@@ -86,8 +86,8 @@
                                         //check if there is no error occurred, insert data into db
                                         if(empty($errorMsg)){
 
-                                          $gen_id = "CUST" . rand(1000,9999);
-                                          $role = "customer";
+                                          $gen_id = "MMR" . rand(1000,9999);
+                                          $role = "member";
                                           $hashpassword = hash('sha256', $password);
 
                                           $sqlInsertUser = "INSERT INTO users (gen_id,username,password,name,role) VALUES ('$gen_id','$username','$hashpassword','$name','$role')";
@@ -96,7 +96,7 @@
 
                                             $last_id = $conn->insert_id;
 
-                                            $sqlInsertProfile = "INSERT INTO users_profile (user_id) VALUES ('$last_id')";
+                                            $sqlInsertProfile = "INSERT INTO users_profile (user_id,email) VALUES ('$last_id','$username')";
                                             if ($conn->query($sqlInsertProfile) === TRUE) {
 
                                               $_POST = array();
@@ -142,9 +142,9 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Username</label>
+                                            <label for="yourUsername" class="form-label">Email</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="username" class="form-control" id="username"
+                                                <input type="email" name="username" class="form-control" id="username" required
                                                     value="<?php if(isset($_POST['username'])){echo $_POST['username'];} ?>">
                                             </div>
                                         </div>

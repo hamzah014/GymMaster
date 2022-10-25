@@ -119,10 +119,10 @@
                   <form class="row g-3 needs-validation" method="post" action="login.php">
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                      <label for="yourUsername" class="form-label">Email</label>
                       <div class="input-group has-validation">
-                        <input type="text" name="username" class="form-control" id="username" value="<?php if(isset($_POST['username'])){echo $_POST['username'];} ?>">
-                        <div class="invalid-feedback">Please enter your username.</div>
+                        <input type="email" name="username" class="form-control" id="username" value="<?php if(isset($_POST['username'])){echo $_POST['username'];} ?>">
+                        <div class="invalid-feedback">Please enter your email.</div>
                       </div>
                     </div>
 

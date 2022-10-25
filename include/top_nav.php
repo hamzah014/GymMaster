@@ -42,6 +42,8 @@
             $username = $userData['username'];
             $name = $userData['name'];
 
+        }else{
+            header("Location:index.php");
         }
 
     ?>
@@ -66,7 +68,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="users_profile.php">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
