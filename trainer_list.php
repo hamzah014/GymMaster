@@ -40,7 +40,7 @@
                             <!-- Table with stripped rows -->
                             <table class="table datatable table-bordered table-hover">
                                 <thead>
-                                    <tr class="table-dark">
+                                    <tr class="table-secondary">
                                         <th scope="col">#</th>
                                         <th scope="col">Trainer ID</th>
                                         <th scope="col">Full Name</th>
@@ -90,7 +90,7 @@
                                         }else{
 
                                             echo '<tr>';
-                                            echo '    <td colspan="5" class="bg-danger text-center text-white">Sorry, there is no data yet.</td>';
+                                            echo '    <td colspan="10" class="bg-danger text-center text-white">Sorry, there is no data yet.</td>';
                                             echo '</tr>';
 
                                         }

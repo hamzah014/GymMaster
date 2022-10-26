@@ -92,7 +92,7 @@
                                         }else{
 
                                             echo '<tr>';
-                                            echo '    <td colspan="5" class="bg-danger text-center text-white">Sorry, there is no data yet.</td>';
+                                            echo '    <td colspan="10" class="bg-danger text-center text-white">Sorry, there is no data yet.</td>';
                                             echo '</tr>';
 
                                         }
