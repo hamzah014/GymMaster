@@ -74,6 +74,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="dropdown-item d-flex align-items-center" href="users_profile.php">
+                            <i class="bi bi-camera"></i>
+                            <span>My Gallery</span>
+                        </a>
+                    </li>
+                    <li>
                         <hr class="dropdown-divider">
                     </li>
                     

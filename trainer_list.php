@@ -79,10 +79,10 @@
                                                 echo '    <td>'.$dataTrainer['username'].'</td>';
                                                 echo '    <td>'.$dataTrainer['address'].'</td>';
                                     ?>  
-                                                            <td>
-                                                                <a class="btn btn-info" href="users_edit.php?edit_id=<?php echo $dataTrainer['user_id']; ?>&edit_role=<?php echo $role_trainer; ?>">Edit</a>
-                                                                <a class="btn btn-danger" href="users_delete.php?delete_id=<?php echo $dataTrainer['user_id']; ?>&delete_role=<?php echo $role_trainer; ?>">Delete</a>
-                                                            </td>
+                                                <td>
+                                                    <a class="btn btn-info" href="users_edit.php?edit_id=<?php echo $dataTrainer['user_id']; ?>&edit_role=<?php echo $role_trainer; ?>">Edit</a>
+                                                    <a class="btn btn-danger" href="users_delete.php?delete_id=<?php echo $dataTrainer['user_id']; ?>&delete_role=<?php echo $role_trainer; ?>">Delete</a>
+                                                </td>
                                                 
                                     <?php   
                                                 echo '</tr>';
