@@ -44,6 +44,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Trainer ID</th>
                                         <th scope="col">Full Name</th>
+                                        <th scope="col">Date of Birth</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Address</th>
                                         <th scope="col">Action</th>
@@ -74,6 +75,7 @@
                                                 echo '    <th scope="row">'.$count.'</th>';
                                                 echo '    <td>'.$dataTrainer['gen_id'].'</td>';
                                                 echo '    <td>'.$dataTrainer['name'].'</td>';
+                                                echo '    <td>'.$dataTrainer['birthDate'].'</td>';
                                                 echo '    <td>'.$dataTrainer['username'].'</td>';
                                                 echo '    <td>'.$dataTrainer['address'].'</td>';
                                     ?>  

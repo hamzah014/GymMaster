@@ -40,6 +40,7 @@
                             <?php
 
                                 $name = "";
+                                $birthDate = "";
                                 $address = "";
                                 $email = "";
                                 $errorMsg = array();
@@ -53,6 +54,7 @@
                                     //get post data
                                     //print_r($_POST);
                                     $name = $_POST['name'];
+                                    $birthDate = $_POST['birthDate'];
                                     $address = $_POST['address'];
                                     $email = $_POST['email'];
                                     $password = $_POST['password'];
@@ -62,6 +64,10 @@
                                         array_push($errorMsg,"Please enter full name.");
                                     }
 
+                                    if($birthDate == "" && empty($birthDate)){
+                                        array_push($errorMsg,"Please enter date of birth.");
+                                    }
+                                    
                                     if($address == "" && empty($address)){
                                         array_push($errorMsg,"Please enter address.");
                                     }
@@ -96,10 +102,10 @@
                                       $sqlInsertUser = "INSERT INTO users (gen_id,username,password,name,role) VALUES ('$gen_id','$email','$hashpassword','$name','$role_trainer')";
                                     
                                       if ($conn->query($sqlInsertUser) === TRUE) {
-
+//
                                         $last_id = $conn->insert_id;
-
-                                        $sqlInsertProfile = "INSERT INTO users_profile (user_id,email,address) VALUES ('$last_id','$email','$address')";
+//
+                                        $sqlInsertProfile = "INSERT INTO users_profile (user_id,email,address,birthDate) VALUES ('$last_id','$email','$address','$birthDate')";
                                         if ($conn->query($sqlInsertProfile) === TRUE) {
                                         
                                           $_POST = array();
@@ -122,7 +128,7 @@
                                 if(!empty($errorMsg)){
             
                                   echo '<div class="pt-1 pb-1">';
-                                  echo '<p class="text-danger">Please refer the error before completing the submission.</p>';
+                                  echo '<p class="text-danger">Please complete the form to proceed registration.</p>';
                                   echo '  <ul>';
                                   
                                   foreach($errorMsg as $key=>$value){
@@ -145,6 +151,12 @@
                                     <label for="name" class="col-sm-2 col-form-label">Full Name</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="name" class="form-control" id="name" value="<?php if(isset($_POST['name'])){echo $_POST['name'];} ?>">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="birthDate" class="col-sm-2 col-form-label">Date of Birth</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" name="birthDate" class="form-control" id="birthDate" value="<?php if(isset($_POST['birthDate'])){echo $_POST['birthDate'];} ?>">
                                     </div>
                                 </div>
                                 <div class="row mb-3">

@@ -44,6 +44,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Member ID</th>
                                         <th scope="col">Full Name</th>
+                                        <th scope="col">Date of Birth</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Address</th>
@@ -74,13 +75,14 @@
                                                 echo '    <th scope="row">'.$count.'</th>';
                                                 echo '    <td>'.$dataMember['gen_id'].'</td>';
                                                 echo '    <td>'.$dataMember['name'].'</td>';
+                                                echo '    <td>'.$dataMember['birthDate'].'</td>';
                                                 echo '    <td>'.$dataMember['username'].'</td>';
                                                 echo '    <td>'.$dataMember['email'].'</td>';
                                                 echo '    <td>'.$dataMember['address'].'</td>';
                                         ?>
                                                         <td>
-                                                            <a class="btn btn-info" href="users_edit.php?edit_id=<?php echo $dataMember['user_id']; ?>&edit_role=<?php echo $role_member; ?>">Edit</a>
-                                                            <a class="btn btn-danger" href="users_delete.php?delete_id=<?php echo $dataMember['user_id']; ?>&delete_role=<?php echo $role_member; ?>">Delete</a>
+                                                            <a class="btn btn-info btn-sm" href="users_edit.php?edit_id=<?php echo $dataMember['user_id']; ?>&edit_role=<?php echo $role_member; ?>">Edit</a>
+                                                            <a class="btn btn-danger btn-sm" href="users_delete.php?delete_id=<?php echo $dataMember['user_id']; ?>&delete_role=<?php echo $role_member; ?>">Delete</a>
                                                         </td>
     
                                         <?php

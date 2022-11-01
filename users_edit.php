@@ -54,8 +54,10 @@
 
                                 $id = "";
                                 $name = "";
+                                $birthDate = "";
                                 $username = "";
                                 $address   = "";
+                                $details   = "";
                                 $errorMsg = array();
 
                             
@@ -81,7 +83,9 @@
 
                                         $name = $dataUser['name'];
                                         $username = $dataUser['username'];
+                                        $birthDate = $dataUser['birthDate'];
                                         $address = $dataUser['address'];
+                                        $details = $dataUser['details'];
 
 
                                     }else{
@@ -103,12 +107,18 @@
                                     
                                     $id         = $_POST['id'];
                                     $name       = $_POST['name'];
+                                    $birthDate  = $_POST['birthDate'];
                                     $username   = $_POST['username'];
                                     $address    = $_POST['address'];
+                                    $details    = $_POST['details'];
                                     $edit_role    = $_POST['edit_role'];
                                     
                                     if(empty($name) && $name==""){
                                         array_push($errorMsg,"Please enter name.");
+                                    }
+
+                                    if($birthDate == "" && empty($birthDate)){
+                                        array_push($errorMsg,"Please enter date of birth.");
                                     }
                                 
                                     if(empty($address) && $address==""){
@@ -138,7 +148,10 @@
                                                          WHERE id='$id' ";
                                     
                                         $sqlUpdateProf = "UPDATE users_profile
-                                                         SET address='$address'
+                                                         SET 
+                                                         address='$address',
+                                                         birthDate='$birthDate',
+                                                         details='$details'
                                                          WHERE user_id='$id' ";
                                         
                                         if ($conn->query($sqlUpdateUser) === TRUE && $conn->query($sqlUpdateProf) === TRUE) {
@@ -189,13 +202,26 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="birthDate" class="col-sm-2 col-form-label">Date of Birth</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" name="birthDate" class="form-control" id="birthDate"
+                                            value="<?php echo $birthDate; ?>">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="address" class="col-sm-2 col-form-label">Address</label>
                                     <div class="col-sm-10">
                                         <textarea name="address" id="address" class="form-control"
                                             style="height: 100px"><?php echo $address; ?></textarea>
                                     </div>
                                 </div>
-                                <br />
+                                <div class="row mb-3">
+                                    <label for="details" class="col-sm-2 col-form-label "><?php echo ucfirst($edit_role); ?> Details/Background Profile</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="details" id="details" class="form-control tinymce-editor"><?php echo $details; ?></textarea>
+                                    </div>
+                                </div>
+                                <hr />
                                 <p><b>Login Credential</b></p>
                                 <div class="row mb-3">
                                     <label for="username" class="col-sm-2 col-form-label">Email</label>

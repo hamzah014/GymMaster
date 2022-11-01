@@ -37,9 +37,11 @@
             $role = $_SESSION['role'];
             $id = $_SESSION['id'];
             $gen_id = "";
-            $username = "";
             $name = "";
-            $address = "";
+            $birthDate = "";
+            $username = "";
+            $address   = "";
+            $details   = "";
 
             //print_r($_SESSION);
 
@@ -72,6 +74,8 @@
                 $username = $userData['username'];
                 $name = $userData['name'];
                 $address = $userData['address'];
+                $birthDate = $userData['birthDate'];
+                $details = $userData['details'];
 
             }
 
@@ -126,9 +130,19 @@
                                         <div class="col-lg-9 col-md-8"><?php echo $name; ?></div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row" <?php if($role=='admin'){echo 'hidden';} //hidden birthdate for admin ?>>
+                                        <div class="col-lg-3 col-md-4 label">Date of Birth</div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $birthDate; ?></div>
+                                    </div>
+                                    <div class="row" <?php if($role=='admin'){echo 'hidden';} //hidden address for admin ?>>
                                         <div class="col-lg-3 col-md-4 label">Address</div>
                                         <div class="col-lg-9 col-md-8"><?php echo $address; ?></div>
+                                    </div>
+                                    <div class="row" <?php if($role=='admin'){echo 'hidden';} //hidden details for admin ?> >
+                                        <div class="col-lg-3 col-md-4 label">Description/Bio</div>
+                                        <div class="col-lg-9 col-md-8">
+                                            <?php echo $details; ?>
+                                        </div>
                                     </div>
 
                                     <h5 class="card-title">Account Details</h5>
@@ -157,10 +171,16 @@
                                             $name           = $_POST['name'];
                                             $username       = $_POST['username'];
                                             $address        = $_POST['address'];
+                                            $birthDate        = $_POST['birthDate'];
+                                            $details        = $_POST['details'];
                                             $edit_role      = $_POST['edit_role'];
                                         
                                             if(empty($name) && $name==""){
                                                 array_push($errorMsg,"Please enter name.");
+                                            }
+
+                                            if($birthDate == "" && empty($birthDate)){
+                                                array_push($errorMsg,"Please enter date of birth.");
                                             }
                                         
                                             if(empty($address) && $address==""){
@@ -198,7 +218,10 @@
                                                 }else{
     
                                                     $sqlUpdateProf = "UPDATE users_profile
-                                                                     SET address='$address'
+                                                                     SET 
+                                                                     address='$address',
+                                                                     birthDate='$birthDate',
+                                                                     details='$details'
                                                                      WHERE user_id='$id' ";
 
                                                 }
@@ -249,12 +272,27 @@
                                                     value="<?php echo $name; ?>">
                                             </div>
                                         </div>
+                                        <div class="row mb-3">
+                                            <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Date of Birth</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="birthDate" type="date" class="form-control" id="birthDate"
+                                                    value="<?php echo $birthDate; ?>">
+                                            </div>
+                                        </div>
 
                                         <div class="row mb-3">
                                             <label for="address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <textarea name="address" class="form-control" <?php if($role=='admin'){echo 'disabled';} //disabled address for admin ?> id="address"
                                                     style="height: 100px"><?php echo $address; ?></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="details" class="col-md-4 col-lg-3 col-form-label">Description/Bio</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <textarea name="details" class="form-control tinymce-editor" <?php if($role=='admin'){echo 'hidden';} //disabled address for admin ?> 
+                                                    id="details"><?php echo $details; ?></textarea>
                                             </div>
                                         </div>
 
