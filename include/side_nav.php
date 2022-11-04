@@ -62,24 +62,6 @@
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#schedule-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-calendar"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="schedule-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="schedule_register.php">
-                        <i class="bi bi-circle"></i><span>Register Trainer Schedule</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="schedule_search.php">
-                        <i class="bi bi-circle"></i><span>Table Trainer Schedule</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Components Nav -->
-
-        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#members-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-person-badge"></i><span>Members</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -98,17 +80,40 @@
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#schedule-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-calendar"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="schedule-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="schedule_register.php">
+                        <i class="bi bi-circle"></i><span>Register Trainer Schedule</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="schedule_search.php">
+                        <i class="bi bi-circle"></i><span>Table Trainer Schedule</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Components Nav -->
+
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#booking-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-calendar-check"></i><span>Booking</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="booking-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
+                    <a href="booking_list.php">
                         <i class="bi bi-circle"></i><span>List of Booking</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="booking_register.php">
+                        <i class="bi bi-circle"></i><span>Register Booking</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="booking_my.php">
                         <i class="bi bi-circle"></i><span>My Booking</span>
                     </a>
                 </li>

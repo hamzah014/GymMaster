@@ -202,7 +202,7 @@
                                         <td><?php echo $searchData['endTime']; ?></td>
                                         <td>
                                             
-                                            <a class="btn btn-primary btn-sm" href="schedule_details.php?detail_id=<?php echo $searchData['id']; ?>">See Details</a>
+                                            <a class="btn btn-primary btn-sm" href="schedule_detail.php?detail_id=<?php echo $searchData['id']; ?>">See Details</a>
                                             <a class="btn btn-info btn-sm" href="schedule_edit.php?edit_id=<?php echo $searchData['id']; ?>">Edit</a>
                                             <a class="btn btn-danger btn-sm" href="schedule_delete.php?delete_id=<?php echo $searchData['id']; ?>">Delete</a>
                                                
