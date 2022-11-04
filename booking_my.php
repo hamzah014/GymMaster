@@ -61,7 +61,11 @@
                                         $role_trainer = "trainer";
                                         $count = 0;
 
-                                        $sqlSearch = "SELECT * FROM booking 
+                                        $sqlSearch = "SELECT booking.id as bookid,booking.trainer_id,booking.member_id,booking.bookcode,booking.schedule_id,booking.applyDateTime,
+                                                        booking.approveTrainer,booking.approveAdmin,booking.rateTrainer,booking.status as book_status,
+                                                        trainer_schedule.id as trainid, trainer_schedule.trainer_id, trainer_schedule.trainDate, trainer_schedule.startTime,
+                                                        trainer_schedule.endTime, trainer_schedule.status as schedule_status 
+                                                        FROM booking 
                                                         INNER JOIN trainer_schedule ON booking.schedule_id = trainer_schedule.id
                                                         where booking.member_id = $member_id";
 
@@ -79,12 +83,12 @@
                                             <th scope="row"><?php echo $count; ?></th>
                                             <td><?php echo $searchData['bookcode']; ?></td>
                                             <td><?php echo $searchData['applyDateTime']; ?></td>
-                                            <td><?php echo $searchData['startTime']; ?></td>
-                                            <td><?php echo $searchData['endTime']; ?></td>
+                                            <td><?php echo $searchData['trainDate']; ?></td>
+                                            <td><?php echo $searchData['startTime']. " - " .$searchData['endTime']; ?></td>
                                             <td>
                                                 <?php 
                                                     $bgstatus = "";
-                                                    $currentStatus = $searchData['status'];
+                                                    $currentStatus = $searchData['book_status'];
                                                     //set background class by their current status
                                                     if($currentStatus == 'pending'){
 
@@ -111,9 +115,15 @@
                                                 <span class="badge bg-<?php echo $bgstatus; ?>"><?php echo ucfirst($currentStatus); ?></span>
                                             </td>
                                             <td>
+                                                <?php 
+                                                    if($currentStatus !='pending' && $currentStatus !='rejected'){
+                                                ?>
 
-                                                <a class="btn btn-primary btn-sm" href="schedule_detail.php?detail_id=<?php echo $searchData['id']; ?>">Proceed Payment</a>
-
+                                                <a class="btn btn-primary btn-sm" href="booking_detail.php?detail_id=<?php echo $searchData['bookid']; ?>">See Details</a>
+                                                
+                                                <?php 
+                                                    }
+                                                ?>
                                             </td>
                                         </tr>
                                                 
