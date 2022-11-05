@@ -38,20 +38,25 @@
 
                             <!-- Default Tabs -->
                             <ul class="nav nav-tabs d-flex" id="myTabjustified" role="tablist">
-                                <li class="nav-item flex-fill" role="presentation">
+                                <li class="nav-item" role="presentation">
                                     <button class="nav-link w-100 active" id="schedule-tab" data-bs-toggle="tab"
                                         data-bs-target="#schedule-justified" type="button" role="tab" aria-controls="schedule"
                                         aria-selected="true">Schedule Info</button>
                                 </li>
-                                <li class="nav-item flex-fill" role="presentation">
+                                <li class="nav-item" role="presentation">
                                     <button class="nav-link w-100" id="trainer-tab" data-bs-toggle="tab"
                                         data-bs-target="#trainer-justified" type="button" role="tab"
                                         aria-controls="trainer" aria-selected="false">Trainer Info</button>
                                 </li>
-                                <li class="nav-item flex-fill" role="presentation">
+                                <li class="nav-item" role="presentation">
                                     <button class="nav-link w-100" id="member-tab" data-bs-toggle="tab"
                                         data-bs-target="#member-justified" type="button" role="tab"
                                         aria-controls="member" aria-selected="false">Booking Info</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100" id="payment-tab" data-bs-toggle="tab"
+                                        data-bs-target="#payment-justified" type="button" role="tab"
+                                        aria-controls="payment" aria-selected="false">Payment Info</button>
                                 </li>
                             </ul>
 
@@ -91,11 +96,17 @@
                                 $address = $trainerData['address'];
                                 $birthDate = $trainerData['birthDate'];
 
+                                $approveStatus = 'approved';
+
                                 //get data booking
-                                $sqlSearch3 = "SELECT * FROM booking
+                                $sqlSearch3 = "SELECT booking.id as bookid,booking.trainer_id,booking.member_id,booking.bookcode,booking.schedule_id,booking.applyDateTime,
+                                                booking.approveTrainer,booking.approveAdmin,booking.rateTrainer,booking.status as book_status,
+                                                users.id as userid, users.gen_id, users.username, users.name,
+                                                users_profile.*
+                                                FROM booking
                                                 INNER JOIN users ON booking.member_id = users.id
                                                 INNER JOIN users_profile ON booking.member_id = users_profile.user_id
-                                                where booking.schedule_id='$detail_id'";
+                                                where booking.schedule_id='$detail_id' AND booking.status='$approveStatus'";
 
                                         
                                 $resultSearch3 = $conn->query($sqlSearch3);
@@ -155,8 +166,7 @@
                                                 <th scope="col">Booking ID</th>
                                                 <th scope="col">Member Info</th>
                                                 <th scope="col">Apply Date</th>
-                                                <th scope="col">Approval Trainer</th>
-                                                <th scope="col">Approval Admin</th>
+                                                <th scope="col">Approval</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -183,13 +193,69 @@
                                                     <hr/>
                                                     <b>Username</b> <?php echo $dataBooking['username']; ?> 
                                                 </td>
-                                                <td><?php echo $dataBooking['applyDate']; ?></td>
-                                                <td><?php echo $dataBooking['approveTrainer']; ?></td>
-                                                <td><?php echo $dataBooking['approveAdmin']; ?></td>
-                                                <td><?php echo $dataBooking['status']; ?></td>
+                                                <td><?php echo $dataBooking['applyDateTime']; ?></td>
+                                                
+                                                <?php
+                                                    //define status approveTrainer and approveAdmin
+                                                    $appAdmin = $dataBooking['approveAdmin'];
+                                                    $appTrainer = $dataBooking['approveTrainer'];
+                                                ?>
+
                                                 <td>
-                                                    <a class="btn btn-info" href="#">Approve</a>
-                                                    <a class="btn btn-danger" href="#">Reject</a>
+                                                    Trainer :
+                                                    <?php
+                                                        if($appTrainer=='yes'){
+                                                            echo '<i class="bi bi-check-circle me-1"></i>';
+                                                        }elseif($appTrainer=='no'){
+                                                            echo '<i class="bi bi-x-circle me-1"></i>';
+
+                                                        }else{
+                                                            echo ' - ';
+                                                        }
+                                                    ?>
+                                                    Admin
+                                                    <?php
+                                                        if($appAdmin=='yes'){
+                                                            echo '<i class="bi bi-check-circle me-1"></i>';
+                                                        }elseif($appAdmin=='no'){
+                                                            echo '<i class="bi bi-x-circle me-1"></i>';
+
+                                                        }else{
+                                                            echo ' - ';
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                <?php 
+                                                    $bgstatus = "";
+                                                    $currentStatus = $dataBooking['book_status'];
+                                                    //set background class by their current status
+                                                    if($currentStatus == 'pending'){
+
+                                                        $bgstatus = "secondary";
+
+                                                    }elseif($currentStatus == 'approved'){
+
+                                                        $bgstatus = "success";
+
+                                                    }elseif($currentStatus == 'rejected'){
+
+                                                        $bgstatus = "danger";
+
+                                                    }elseif($currentStatus == 'completed'){
+
+                                                        $bgstatus = "primary";
+
+                                                    }else{
+
+                                                        $bgstatus = "secondary";
+
+                                                    }
+                                                ?>
+                                                <span class="badge bg-<?php echo $bgstatus; ?>"><?php echo ucfirst($currentStatus); ?></span>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-info" href="#">See Details</a>
                                                 </td>
                                             </tr>
             
@@ -215,6 +281,12 @@
 
                                     ?>
 
+                                </div>
+                                <div class="tab-pane fade p-3" id="payment-justified" role="tabpanel"
+                                    aria-labelledby="payment-tab">
+
+                                    payment
+                                    
                                 </div>
                                 
                             </div><!-- End Default Tabs -->

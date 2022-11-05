@@ -26,11 +26,11 @@
         if($resultInsert == true){
 
             echo '<script>alert("Booking has been registered successfully.");</script>';
-            echo '<script>window.location.href="booking_my.php"</script>';
+            echo '<script>window.location.href="booking_myMember.php"</script>';
 
         }else{
             echo '<script>alert("Error occurred. Please try again.");</script>';
-            echo '<script>window.location.href="booking_my.php"</script>';
+            echo '<script>window.location.href="booking_myMember.php"</script>';
 
         }
 

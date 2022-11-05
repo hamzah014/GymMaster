@@ -42,6 +42,14 @@
             $username = $userData['username'];
             $name = $userData['name'];
 
+            if($role == 'admin'){
+                $tag = "ADMIN";
+
+            }else{
+                $tag = $userData['gen_id'];
+
+            }
+
         }else{
             header("Location:index.php");
         }
@@ -61,7 +69,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
                         <h6><?php echo $name; ?></h6>
-                        <span><?php echo ucwords($role); ?></span>
+                        <span><?php echo ucwords($role) . " #" . $tag; ?></span>
                     </li>
                     <li>
                         <hr class="dropdown-divider">

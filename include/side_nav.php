@@ -113,8 +113,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="booking_my.php">
-                        <i class="bi bi-circle"></i><span>My Booking</span>
+                    <a href="booking_myMember.php">
+                        <i class="bi bi-circle"></i><span>My Booking (Member)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="booking_myTrainer.php">
+                        <i class="bi bi-circle"></i><span>My Booking (Trainer)</span>
                     </a>
                 </li>
             </ul>

@@ -42,6 +42,7 @@
                                     <tr class="table-secondary">
                                         <th scope="col">#</th>
                                         <th scope="col">Booking ID</th>
+                                        <th scope="col">Member Info</th>
                                         <th scope="col">Apply Date/Time</th>
                                         <th scope="col">Schedule Date</th>
                                         <th scope="col">Session Time</th>
@@ -53,7 +54,7 @@
                                     <?php
 
                                         //get member id from db - refer top_nav.php
-                                        $member_id = $userData['id'];
+                                        $trainerid = $userData['id'];
 
                                         include('include/connection.php');
 
@@ -64,9 +65,12 @@
                                         $sqlSearch = "SELECT booking.id as bookid,booking.trainer_id,booking.member_id,booking.bookcode,booking.schedule_id,booking.applyDateTime,
                                                         booking.approveTrainer,booking.approveAdmin,booking.rateTrainer,booking.status as book_status,
                                                         trainer_schedule.id as trainid, trainer_schedule.trainer_id, trainer_schedule.trainDate, trainer_schedule.startTime,
-                                                        trainer_schedule.endTime, trainer_schedule.status as schedule_status 
+                                                        trainer_schedule.endTime, trainer_schedule.status as schedule_status,
+                                                        users.id as userid, users.gen_id, users.username, users.name 
                                                         FROM booking 
-                                                        INNER JOIN trainer_schedule ON booking.schedule_id = trainer_schedule.id";
+                                                        INNER JOIN users ON booking.member_id = users.id
+                                                        INNER JOIN trainer_schedule ON booking.schedule_id = trainer_schedule.id
+                                                        where booking.trainer_id = $trainerid";
 
                                         $resultSearch = $conn->query($sqlSearch);
                 
@@ -81,6 +85,7 @@
                                         <tr>
                                             <th scope="row"><?php echo $count; ?></th>
                                             <td><?php echo $searchData['bookcode']; ?></td>
+                                            <td><?php echo $searchData['name'] . " #" . $searchData['gen_id']; ?></td>
                                             <td><?php echo $searchData['applyDateTime']; ?></td>
                                             <td><?php echo $searchData['trainDate']; ?></td>
                                             <td><?php echo $searchData['startTime']. " - " .$searchData['endTime']; ?></td>
@@ -145,8 +150,35 @@
                                                 </p>
                                             </td>
                                             <td>
-                                                <a class="btn btn-success btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid'] ?>&status=1&role=1">Approved</a>
-                                                <a class="btn btn-danger btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid'] ?>&status=0&role=1">Rejected</a>
+                                                <?php
+                                                    //define status approveTrainer and approveAdmin
+                                                    $appAdmin = $searchData['approveAdmin'];
+                                                    $appTrainer = $searchData['approveTrainer'];
+
+                                                    if($appAdmin=="pending"){
+                                                        echo '<span class="badge bg-secondary">Waiting for admin approval.</span>';
+                                                    }elseif($appAdmin=='no'){
+                                                        echo '<span class="badge bg-danger">Booking has been rejected by admin.</span>';
+                                                    }elseif($appTrainer=='no'){
+                                                        echo '<span class="badge bg-danger">Booking has been rejected by trainer.</span>';
+                                                    }
+                                                    
+                                                    if($currentStatus=="pending" && $appAdmin == 'yes'){
+                                                ?>
+
+                                                <a class="btn btn-success btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid']; ?>&status=1&role=2">Approved</a>
+                                                <a class="btn btn-danger btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid']; ?>&status=0&role=2">Rejected</a>
+                                            
+                                                <?php
+                                                    }elseif($currentStatus=="approved"){
+                                                ?>
+
+                                                <a class="btn btn-info btn-sm" href="schedule_detail.php?detail_id=<?php echo $searchData['trainid'] ?>">See Details</a>
+                                            
+                                                <?php
+                                                    }
+                                                ?>
+
                                             </td>
                                         </tr>
                                                 

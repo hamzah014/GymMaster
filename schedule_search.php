@@ -129,8 +129,8 @@
                                             aria-label="Default select example">
                                             <option <?php if($resultTrainer->num_rows < 1){echo 'selected';} ?> value="">Select Trainer</option>
                                             <?php
-                                                $selected = "";
                                                 while($trainerData = $resultTrainer->fetch_assoc()) {
+                                                    $selected = "";
                                                 
                                                     if(isset($_POST['trainer_id']) && $trainerData['id'] == $_POST['trainer_id']){
                                                         $selected = "selected";
@@ -182,6 +182,7 @@
                                         <th scope="col">Slot Date</th>
                                         <th scope="col">Start Time</th>
                                         <th scope="col">End Time</th>
+                                        <th scope="col">Availability</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -200,6 +201,7 @@
                                         <td><?php echo $searchData['trainDate']; ?></td>
                                         <td><?php echo $searchData['startTime']; ?></td>
                                         <td><?php echo $searchData['endTime']; ?></td>
+                                        <td><?php echo ucfirst($searchData['status']); ?></td>
                                         <td>
                                             
                                             <a class="btn btn-primary btn-sm" href="schedule_detail.php?detail_id=<?php echo $searchData['id']; ?>">See Details</a>
