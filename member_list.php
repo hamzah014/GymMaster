@@ -82,6 +82,7 @@
                                         ?>
                                                         <td>
                                                             <a class="btn btn-info btn-sm" href="users_edit.php?edit_id=<?php echo $dataMember['user_id']; ?>&edit_role=<?php echo $role_member; ?>">Edit</a>
+                                                            <a class="btn btn-primary btn-sm" href="gallery_preview.php?member_id=<?php echo $dataMember['user_id']; ?>">View Gallery</a>
                                                             <a class="btn btn-danger btn-sm" href="users_delete.php?delete_id=<?php echo $dataMember['user_id']; ?>&delete_role=<?php echo $role_member; ?>">Delete</a>
                                                         </td>
     

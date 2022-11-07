@@ -174,6 +174,7 @@
                                                 ?>
 
                                                 <a class="btn btn-info btn-sm" href="schedule_detail.php?detail_id=<?php echo $searchData['trainid'] ?>">See Details</a>
+                                                <a class="btn btn-success btn-sm" href="#">Mark as Completed</a>
                                             
                                                 <?php
                                                     }

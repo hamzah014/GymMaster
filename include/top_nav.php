@@ -81,8 +81,8 @@
                             <span>My Profile</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users_profile.php">
+                    <li <?php if($role!='member'){echo 'hidden';} ?>>
+                        <a class="dropdown-item d-flex align-items-center" href="users_gallery.php">
                             <i class="bi bi-camera"></i>
                             <span>My Gallery</span>
                         </a>
