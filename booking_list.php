@@ -145,8 +145,34 @@
                                                 </p>
                                             </td>
                                             <td>
+                                                <?php
+                                                    //define status approveTrainer and approveAdmin
+                                                    $appAdmin = $searchData['approveAdmin'];
+                                                    $appTrainer = $searchData['approveTrainer'];
+
+                                                    if($appAdmin=="pending"){
+                                                        echo '<span class="badge bg-secondary">Waiting for admin approval.</span>';
+                                                    }elseif($appAdmin=='no'){
+                                                        echo '<span class="badge bg-danger">Booking has been rejected by admin.</span>';
+                                                    }elseif($appTrainer=='no'){
+                                                        echo '<span class="badge bg-danger">Booking has been rejected by trainer.</span>';
+                                                    }
+                                                    
+                                                    if($currentStatus=="pending" && $appAdmin == 'yes'){
+                                                ?>
+
                                                 <a class="btn btn-success btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid'] ?>&status=1&role=1">Approved</a>
                                                 <a class="btn btn-danger btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid'] ?>&status=0&role=1">Rejected</a>
+                                            
+                                                <?php
+                                                    }elseif($currentStatus=="approved"){
+                                                ?>
+
+                                                <a class="btn btn-info btn-sm" href="schedule_detail.php?detail_id=<?php echo $searchData['trainid'] ?>">See Details</a>
+                                            
+                                                <?php
+                                                    }
+                                                ?>
                                             </td>
                                         </tr>
                                                 

@@ -20,9 +20,11 @@
           <div class="row justify-content-center">
             <div class="col-6 d-flex flex-column align-items-center justify-content-center">
 
+              <div class="d-flex justify-content-center">
+                <img src="assets/img/logo.png" class="img-logo" alt="">
+              </div>
               <div class="d-flex justify-content-center py-4">
                 <a class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo.png" alt="">
                   <span class="d-none d-lg-block"><?php echo $systemName; ?></span>
                 </a>
               </div><!-- End Logo -->

@@ -207,7 +207,8 @@
                                         <td><?php echo $searchData['endTime']; ?></td>
                                         <td>
                                             
-                                            <a class="btn btn-primary btn-sm" href="booking_add.php?schedule_id=<?php echo $searchData['id']; ?>&member_id=<?php echo $member_id; ?>&trainer_id=<?php echo $searchData['trainer_id']; ?>">Book Session</a>
+                                            <!-- <a class="btn btn-primary btn-sm" href="booking_add.php?schedule_id=<?php echo $searchData['id']; ?>&member_id=<?php echo $member_id; ?>&trainer_id=<?php echo $searchData['trainer_id']; ?>">Book Session</a> -->
+                                            <a class="btn btn-primary" href="booking_payment.php?schedule_id=<?php echo $searchData['id']; ?>&member_id=<?php echo $member_id; ?>&trainer_id=<?php echo $searchData['trainer_id']; ?>">Book Session</a>
                                                
                                         </td>
                                     </tr>

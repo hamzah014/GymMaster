@@ -10,10 +10,6 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
-<!-- Favicons -->
-<link href="assets/img/favicon.png" rel="icon">
-<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
 <link
@@ -36,11 +32,25 @@
 
 <style>
 
+.img-logo {
+    height: 100px;
+    background-size: cover;
+    background-position: center center;
+  }
+
   .img-gallery {
-  height: 300px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center center;
+    height: 300px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .vd-gallery {
+    height: 30rem;
+    width: 30rem;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
   }
 
 </style>

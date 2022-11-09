@@ -39,7 +39,12 @@
                             <!-- Default Tabs -->
                             <ul class="nav nav-tabs d-flex" id="myTabjustified" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link w-100 active" id="schedule-tab" data-bs-toggle="tab"
+                                    <button class="nav-link w-100 active" id="member-tab" data-bs-toggle="tab"
+                                        data-bs-target="#member-justified" type="button" role="tab"
+                                        aria-controls="member" aria-selected="false">Booking Info</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100" id="schedule-tab" data-bs-toggle="tab"
                                         data-bs-target="#schedule-justified" type="button" role="tab" aria-controls="schedule"
                                         aria-selected="true">Schedule Info</button>
                                 </li>
@@ -47,11 +52,6 @@
                                     <button class="nav-link w-100" id="trainer-tab" data-bs-toggle="tab"
                                         data-bs-target="#trainer-justified" type="button" role="tab"
                                         aria-controls="trainer" aria-selected="false">Trainer Info</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link w-100" id="member-tab" data-bs-toggle="tab"
-                                        data-bs-target="#member-justified" type="button" role="tab"
-                                        aria-controls="member" aria-selected="false">Booking Info</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link w-100" id="payment-tab" data-bs-toggle="tab"
@@ -68,9 +68,13 @@
                                 $detail_id = $_GET['detail_id'];  
 
                                 //get data trainer_schedule db
-                                $sqlSearch = "SELECT * 
-                                             FROM trainer_schedule
-                                             WHERE id = '$detail_id' LIMIT 1";
+                                $sqlSearch = "SELECT booking.id as bookid,booking.trainer_id,booking.member_id,booking.bookcode,booking.schedule_id,booking.applyDateTime,
+                                            booking.approveTrainer,booking.approveAdmin,booking.rateTrainer,booking.status as book_status,
+                                            trainer_schedule.id as trainid, trainer_schedule.trainer_id, trainer_schedule.trainDate, trainer_schedule.startTime,
+                                            trainer_schedule.endTime, trainer_schedule.status as schedule_status 
+                                            FROM booking 
+                                            INNER JOIN trainer_schedule ON booking.schedule_id = trainer_schedule.id
+                                            where booking.id = $detail_id LIMIT 1";
 
                                         
                                 $resultSearch = $conn->query($sqlSearch);
@@ -96,8 +100,6 @@
                                 $address = $trainerData['address'];
                                 $birthDate = $trainerData['birthDate'];
 
-                                $approveStatus = 'approved';
-
                                 //get data booking
                                 $sqlSearch3 = "SELECT booking.id as bookid,booking.trainer_id,booking.member_id,booking.bookcode,booking.schedule_id,booking.applyDateTime,
                                                 booking.approveTrainer,booking.approveAdmin,booking.rateTrainer,booking.status as book_status,
@@ -106,51 +108,26 @@
                                                 FROM booking
                                                 INNER JOIN users ON booking.member_id = users.id
                                                 INNER JOIN users_profile ON booking.member_id = users_profile.user_id
-                                                where booking.schedule_id='$detail_id' AND booking.status='$approveStatus'";
+                                                where booking.id='$detail_id' LIMIT 1";
 
                                         
                                 $resultSearch3 = $conn->query($sqlSearch3);
 
+                                //get data booking
+                                $sqlSearch4 = "SELECT booking.id as bookid,booking.trainer_id,booking.member_id,booking.bookcode,booking.schedule_id,booking.applyDateTime,
+                                                booking.approveTrainer,booking.approveAdmin,booking.rateTrainer,booking.status as book_status,
+                                                payment.*
+                                                FROM booking
+                                                INNER JOIN payment ON booking.id = payment.book_id
+                                                where booking.id='$detail_id' LIMIT 1";
+
+                                        
+                                $resultSearch4 = $conn->query($sqlSearch4);
+
                             ?>
 
                             <div class="tab-content pt-2" id="schedulefiedContent">
-                                <div class="tab-pane fade show active p-3" id="schedule-justified" role="tabpanel"
-                                    aria-labelledby="schedule-tab">
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label "><b>Schedule Date</b></div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $trainDate; ?></div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label"><b>Start Time</b></div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $startTime; ?></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label"><b>End Time</b></div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $endTime; ?></div>
-                                    </div>
-
-                                </div>
-                                <div class="tab-pane fade p-3" id="trainer-justified" role="tabpanel"
-                                    aria-labelledby="trainer-tab">
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label "><b>Full Name</b></div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $name; ?></div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label"><b>Date of Birth</b></div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $birthDate; ?></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label"><b>Address</b></div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $address; ?></div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="tab-pane fade p-3" id="member-justified" role="tabpanel"
+                                <div class="tab-pane fade show active  p-3" id="member-justified" role="tabpanel"
                                     aria-labelledby="member-tab">
                                     
                                     <?php
@@ -159,7 +136,7 @@
                                     ?>
 
                                     <!-- Table with stripped rows -->
-                                    <table class="table datatable table-bordered table-hover">
+                                    <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr class="table-secondary">
                                                 <th scope="col">#</th>
@@ -282,10 +259,86 @@
                                     ?>
 
                                 </div>
+                                <div class="tab-pane fade p-3" id="schedule-justified" role="tabpanel"
+                                    aria-labelledby="schedule-tab">
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label "><b>Schedule Date</b></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $trainDate; ?></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label"><b>Start Time</b></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $startTime; ?></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label"><b>End Time</b></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $endTime; ?></div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade p-3" id="trainer-justified" role="tabpanel"
+                                    aria-labelledby="trainer-tab">
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label "><b>Full Name</b></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $name; ?></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label"><b>Date of Birth</b></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $birthDate; ?></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label"><b>Address</b></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $address; ?></div>
+                                    </div>
+                                    
+                                </div>
                                 <div class="tab-pane fade p-3" id="payment-justified" role="tabpanel"
                                     aria-labelledby="payment-tab">
 
-                                    payment
+                                    <?php
+                                        //print_r($resultSearch4);
+                                    ?>
+                                    
+                                    <?php
+                                    if ($resultSearch4->num_rows > 0) {
+
+                                        ?>
+        
+                                        <!-- Table with stripped rows -->
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr class="table-secondary">
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Amount (RM)</th>
+                                                    <th scope="col">Resit Document</th>
+                                                    <th scope="col">Payment Date</th>
+                                                    <th scope="col">Approval Date</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+        
+                                    <?php
+
+                                    ?>
+                                            
+                                            </tbody>
+                                        </table>
+                                <!-- End Table with stripped rows -->
+
+                                    
+                                    <?php
+                                        }else{
+                                            echo '
+                                            <div class="row">
+                                                <div class="col-12 text-white text-center bg-secondary p-2"><b>Sorry, there is no payment made for this schedule.</b></div>
+                                            </div>';
+                                        }
+
+                                    ?>
                                     
                                 </div>
                                 

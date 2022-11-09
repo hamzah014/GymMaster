@@ -43,7 +43,7 @@
 
         ?>
 
-        <li class="nav-item">
+        <li class="nav-item" <?php if($roleuser != 'admin'){ echo 'hidden';} ?>>
             <a class="nav-link collapsed" data-bs-target="#trainer-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-award"></i><span>Trainer</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -61,7 +61,7 @@
             </ul>
         </li><!-- End Components Nav -->
 
-        <li class="nav-item">
+        <li class="nav-item" <?php if($roleuser != 'admin'){ echo 'hidden';} ?>>
             <a class="nav-link collapsed" data-bs-target="#members-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-person-badge"></i><span>Members</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -79,19 +79,24 @@
             </ul>
         </li><!-- End Components Nav -->
 
-        <li class="nav-item">
+        <li class="nav-item" <?php if($roleuser == 'member'){ echo 'hidden';} ?>>
             <a class="nav-link collapsed" data-bs-target="#schedule-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-calendar"></i><span>Schedule</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="schedule-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
+                <li <?php if($roleuser != 'admin'){ echo 'hidden';} ?>>
                     <a href="schedule_register.php">
                         <i class="bi bi-circle"></i><span>Register Trainer Schedule</span>
                     </a>
                 </li>
-                <li>
+                <li <?php if($roleuser != 'admin'){ echo 'hidden';} ?>>
                     <a href="schedule_search.php">
                         <i class="bi bi-circle"></i><span>Table Trainer Schedule</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="schedule_myTrainer.php" <?php if($roleuser != 'trainer'){ echo 'hidden';} ?>>
+                        <i class="bi bi-circle"></i><span>My Schedule</span>
                     </a>
                 </li>
             </ul>
@@ -103,27 +108,34 @@
             </a>
             <ul id="booking-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="booking_list.php">
+                    <a href="booking_list.php" <?php if($roleuser != 'admin'){ echo 'hidden';} ?>>
                         <i class="bi bi-circle"></i><span>List of Booking</span>
                     </a>
                 </li>
                 <li>
-                    <a href="booking_register.php">
+                    <a href="booking_register.php" <?php if($roleuser != 'member'){ echo 'hidden';} ?>>
                         <i class="bi bi-circle"></i><span>Register Booking</span>
                     </a>
                 </li>
                 <li>
-                    <a href="booking_myMember.php">
-                        <i class="bi bi-circle"></i><span>My Booking (Member)</span>
+                    <a href="booking_myMember.php" <?php if($roleuser != 'member'){ echo 'hidden';} ?>>
+                        <i class="bi bi-circle"></i><span>My Booking</span>
                     </a>
                 </li>
                 <li>
-                    <a href="booking_myTrainer.php">
-                        <i class="bi bi-circle"></i><span>My Booking (Trainer)</span>
+                    <a href="booking_myTrainer.php" <?php if($roleuser != 'trainer'){ echo 'hidden';} ?>>
+                        <i class="bi bi-circle"></i><span>My Booking</span>
                     </a>
                 </li>
             </ul>
         </li><!-- End Components Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="met_calculator.php">
+                <i class="bi bi-calculator"></i>
+                <span>MET Calculator</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
 
 
     </ul>

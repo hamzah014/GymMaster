@@ -115,16 +115,7 @@
                                                 <span class="badge bg-<?php echo $bgstatus; ?>"><?php echo ucfirst($currentStatus); ?></span>
                                             </td>
                                             <td>
-                                                <?php 
-                                                    if($currentStatus !='pending' && $currentStatus !='rejected'){
-                                                ?>
-
                                                 <a class="btn btn-primary btn-sm" href="booking_detail.php?detail_id=<?php echo $searchData['bookid']; ?>">See Details</a>
-                                                <a class="btn btn-success btn-sm" href="#">Mark as Completed</a>
-                                                
-                                                <?php 
-                                                    }
-                                                ?>
                                             </td>
                                         </tr>
                                                 
