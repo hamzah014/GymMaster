@@ -114,7 +114,8 @@
                 <i class="bi bi-calculator"></i>
                 <span>MET Calculator</span>
             </a>
-        </li><!-- End Dashboard Nav -->
+        </li>
+        <!-- End Dashboard Nav -->
 
 
     </ul>
