@@ -42,6 +42,9 @@
             $username = "";
             $address   = "";
             $details   = "";
+            $profilePic = "";
+
+            $dirProfile = "assets/img/profile/";
 
             //print_r($_SESSION);
 
@@ -76,6 +79,7 @@
                 $address = $userData['address'];
                 $birthDate = $userData['birthDate'];
                 $details = $userData['details'];
+                $profilePic = $userData['profilePic'];
 
             }
 
@@ -89,9 +93,31 @@
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center text-center">
 
+                            <?php 
+                                if($profilePic == ""){
+                            ?>
+
                             <img src="assets/img/user_profile.png" alt="Profile" class="rounded-circle">
+                            
+                            <?php
+                                }else{
+                            ?>
+
+                            <img src="<?php echo $dirProfile.$profilePic ?>" alt="Profile" class="rounded-circle">
+                            
+                            <?php
+                                }
+                            ?>
                             <h3 class=""><b><?php echo $name; ?></b></h3>
                             <h3><?php echo ucwords($role); ?> #<?php echo $gen_id; ?></h3>
+                            <p>
+                                <form action="users_updatePic.php" method="post" enctype="multipart/form-data">
+
+                                    <input type="text" name="user_id" class="form-control d-none" id="user_id" value="<?php echo $id; ?>">
+                                    <input required name="imageFile" type="file" class="form-control" accept="image/*">
+                                    <button type="submit" class="btn btn-primary btn-sm">Change Profile Picture</button>
+                                </form>
+                            </p>
                         </div>
                     </div>
 

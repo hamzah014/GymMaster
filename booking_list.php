@@ -37,7 +37,7 @@
                         <div class="card-body">
                             <h5 class="card-title">My Booking List</h5>
                             <!-- Table with stripped rows -->
-                            <table class="table datatable table-bordered table-hover">
+                            <table class="table datatable table-bordered table-striped table-hover text-center">
                                 <thead>
                                     <tr class="table-secondary">
                                         <th scope="col">#</th>
@@ -51,6 +51,8 @@
                                 </thead>
                                 <tbody>
                                     <?php
+                                        //get user role
+                                        $roleuser = $_SESSION['role'];
 
                                         //get member id from db - refer top_nav.php
                                         $member_id = $userData['id'];
@@ -76,11 +78,13 @@
                                             while($searchData = $resultSearch->fetch_assoc()) {
                                                 
                                                 $count++;
+                                                $bookcode = $searchData['bookcode'];
+                                                $bookid = $searchData['bookid'];
                                     ?>  
 
                                         <tr>
                                             <th scope="row"><?php echo $count; ?></th>
-                                            <td><?php echo $searchData['bookcode']; ?></td>
+                                            <td><a href="booking_detail.php?detail_id=<?php echo $bookid; ?>" target="_blank"><u><?php echo $bookcode; ?></u></a></td>
                                             <td><?php echo $searchData['applyDateTime']; ?></td>
                                             <td><?php echo $searchData['trainDate']; ?></td>
                                             <td><?php echo $searchData['startTime']. " - " .$searchData['endTime']; ?></td>
@@ -144,32 +148,37 @@
                                                     ?>
                                                 </p>
                                             </td>
-                                            <td>
+                                            <td class="p-3">
                                                 <?php
                                                     //define status approveTrainer and approveAdmin
                                                     $appAdmin = $searchData['approveAdmin'];
                                                     $appTrainer = $searchData['approveTrainer'];
 
                                                     if($appAdmin=="pending"){
-                                                        echo '<span class="badge bg-secondary">Waiting for admin approval.</span>';
+                                                        echo '<span class="badge bg-secondary">Waiting for admin approval.</span><hr/>';
                                                     }elseif($appAdmin=='no'){
-                                                        echo '<span class="badge bg-danger">Booking has been rejected by admin.</span>';
+                                                        echo '<span class="badge bg-danger">Booking has been rejected by admin.</span><hr/>';
                                                     }elseif($appTrainer=='no'){
-                                                        echo '<span class="badge bg-danger">Booking has been rejected by trainer.</span>';
+                                                        echo '<span class="badge bg-danger">Booking has been rejected by trainer.</span><hr/>';
                                                     }
-                                                    
-                                                    if($currentStatus=="pending" && $appAdmin == 'yes'){
                                                 ?>
 
-                                                <a class="btn btn-success btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid'] ?>&status=1&role=1">Approved</a>
-                                                <a class="btn btn-danger btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid'] ?>&status=0&role=1">Rejected</a>
+                                                    <a <?php if($roleuser!='admin'){echo 'hidden';} ?> class="btn btn-info btn-sm" 
+                                                    href="booking_detail.php?detail_id=<?php echo $searchData['bookid']; ?>">See Details</a>
+                                                
+                                                <?php
+                                                    
+                                                    if($currentStatus=="pending"){
+                                                ?>
+
+                                                        <a class="btn btn-success btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid']; ?>&status=1&role=1">Approved</a>
+                                                        <a class="btn btn-danger btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid']; ?>&status=0&role=1">Rejected</a>
                                             
                                                 <?php
                                                     }elseif($currentStatus=="approved"){
                                                 ?>
-
-                                                <a class="btn btn-info btn-sm" href="schedule_detail.php?detail_id=<?php echo $searchData['trainid'] ?>">See Details</a>
-                                            
+                                                        <a class="btn btn-success btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid']; ?>&status=2&role=1">Completed</a>
+                                                
                                                 <?php
                                                     }
                                                 ?>

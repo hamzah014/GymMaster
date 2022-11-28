@@ -15,40 +15,14 @@
 
             $roleuser = $_SESSION['role'];
 
-            //admin menu begin
-            if($_SESSION['role']=='admin'){
-
-        ?>
-        <?php
-            }
-            //admin menu end
-
-            //trainer menu begin
-            elseif($_SESSION['role']=='trainer'){
-
-        ?>
-        <?php
-
-            }
-            //trainer menu end
-
-            //member menu begin
-            elseif($_SESSION['role']=='member'){
-
-        ?>
-        <?php
-
-            }
-            //member menu end
-
         ?>
 
-        <li class="nav-item" <?php if($roleuser != 'admin'){ echo 'hidden';} ?>>
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#trainer-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-award"></i><span>Trainer</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="trainer-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
+                <li <?php if($roleuser != 'admin'){ echo 'hidden';} ?>>
                     <a href="trainer_register.php">
                         <i class="bi bi-circle"></i><span>Register Trainer</span>
                     </a>
@@ -125,6 +99,11 @@
                 <li>
                     <a href="booking_myTrainer.php" <?php if($roleuser != 'trainer'){ echo 'hidden';} ?>>
                         <i class="bi bi-circle"></i><span>My Booking</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="payment_list.php" <?php if($roleuser != 'admin'){ echo 'hidden';} ?>>
+                        <i class="bi bi-circle"></i><span>Payment Booking</span>
                     </a>
                 </li>
             </ul>

@@ -36,6 +36,10 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">My Booking List</h5>
+                            <p class="text-primary">
+                                <i class="bi bi-info-circle"></i> If you have made 2nd payment, please keep update with payment status on See Details. <br/>
+                                <i class="bi bi-info-circle"></i> If your status is rejected, please go to counter and show the details to claim your deposit. <br/>
+                            </p>
                             <!-- Table with stripped rows -->
                             <table class="table datatable table-bordered table-hover">
                                 <thead>
@@ -77,6 +81,7 @@
                                             while($searchData = $resultSearch->fetch_assoc()) {
                                                 
                                                 $count++;
+                                                $bookid = $searchData['bookid'];
                                     ?>  
 
                                         <tr>
@@ -115,7 +120,22 @@
                                                 <span class="badge bg-<?php echo $bgstatus; ?>"><?php echo ucfirst($currentStatus); ?></span>
                                             </td>
                                             <td>
-                                                <a class="btn btn-primary btn-sm" href="booking_detail.php?detail_id=<?php echo $searchData['bookid']; ?>">See Details</a>
+                                                <?php
+                                                    //get amount payment
+                                                    $statusApp = 'approved';
+
+                                                    $sqlSearch4 = "SELECT *
+                                                    FROM payment
+                                                    WHERE book_id='$bookid' && status='$statusApp'";
+                                
+                                                    $resultSearch4 = $conn->query($sqlSearch4);
+                                                    $payQuantity = $resultSearch4->num_rows;
+                                                    //echo $payQuantity;
+                                                ?>
+                                                
+                                                <a <?php if($currentStatus=='pending' || $currentStatus=='rejected'){echo 'hidden';} ?> class="btn btn-primary btn-sm" href="booking_detail.php?detail_id=<?php echo $searchData['bookid']; ?>">See Details</a>
+                                                <a <?php if($searchData['rateTrainer']>0){echo 'hidden';} ?> class="btn btn-info btn-sm" href="booking_rate.php?bookid=<?php echo $searchData['bookid']; ?>">Rate Session</a>
+                                                <a <?php if($payQuantity==2 || $currentStatus=='rejected'){echo 'hidden';} ?> class="btn btn-success btn-sm" href="booking_paymentComplete.php?bookid=<?php echo $searchData['bookid']; ?>&member_id=<?php echo $member_id; ?>&trainer_id=<?php echo $searchData['trainer_id']; ?>">Complete Payment</a>
                                             </td>
                                         </tr>
                                                 

@@ -10,10 +10,11 @@
         $no = "no";
         $appBook = "approved"; 
         $rejectBook = "rejected"; 
+        $completeBook = "completed"; 
         $booked = "booked"; 
 
         $bookid = $_GET['bookid'];
-        $status = $_GET['status']; // 1 = approve, 0 = reject
+        $status = $_GET['status']; // 1 = approve, 0 = reject, 2 = completed
         $role = $_GET['role']; // 1 = admin , 2 = trainer
 
         $bothApprove = 0; // 1 - yes, 0 = no
@@ -37,6 +38,11 @@
                 $sqlUpdate = "UPDATE booking
                              SET approveAdmin='$no', approveTrainer='$no', status='$rejectBook'
                              WHERE id = '$bookid'";
+            }elseif($status == 2){
+                
+                $sqlUpdate = "UPDATE booking
+                             SET status='$completeBook'
+                             WHERE id = '$bookid'";
             }
 
         }elseif($role == 2){
@@ -53,6 +59,11 @@
                 $sqlUpdate = "UPDATE booking
                              SET approveTrainer='$no', status='$rejectBook'
                              WHERE id = '$bookid'";
+            }elseif($status == 2){
+                
+                $sqlUpdate = "UPDATE booking
+                             SET status='$completeBook'
+                             WHERE id = '$bookid'";
             }
 
         }    
@@ -62,7 +73,7 @@
 
         if($resultUpdate == true){
 
-            if($bothApprove == 1){
+            if($bothApprove == 1 && $status != 2){
 
                 $sqlUpdate2 = "UPDATE trainer_schedule
                                 SET status='$booked'
@@ -72,7 +83,7 @@
 
             }
 
-            echo '<script>alert("Booking has been registered successfully.");</script>';
+            echo '<script>alert("Booking has been updated successfully.");</script>';
 
         }else{
             echo '<script>alert("Error occurred. Please try again.");</script>';

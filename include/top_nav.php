@@ -21,14 +21,19 @@
             $username = "";
             $name = "";
             $role = $_SESSION['role'];
+            $profilePic = "user_profile.png"; //default profile picture
+
+            $dirProfile = "assets/img/profile/";
 
             if($role == 'admin'){
                 //get admin data by id match in db
-                $getUser = "SELECT * FROM admins where id='$id'";
+                $getUser = "SELECT * FROM admins where id='$id' LIMIT 1";
 
             }else{
                 //get user data by id match in db
-                $getUser = "SELECT * FROM users where id='$id'";
+                $getUser = "SELECT * FROM users
+                            INNER JOIN users_profile ON users.id = users_profile.user_id
+                            where users.id='$id' LIMIT 1";
 
             }
             
@@ -37,6 +42,7 @@
             
             //get users data
             $userData = $resultUser->fetch_assoc();
+            //print_r($userData);
 
             //assign user data to variable for easy access
             $username = $userData['username'];
@@ -47,6 +53,10 @@
 
             }else{
                 $tag = $userData['gen_id'];
+
+                if($userData['profilePic'] != ""){
+                    $profilePic = $userData['profilePic'];
+                }
 
             }
 
@@ -62,7 +72,8 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <i class="bi bi-person-circle"></i>
+                    <!-- <i class="bi bi-person-circle"></i> -->
+                    <img src="<?php echo $dirProfile.$profilePic; ?>" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
                 </a><!-- End Profile Iamge Icon -->
 

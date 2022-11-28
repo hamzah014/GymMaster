@@ -87,11 +87,11 @@
                                         $resultUser = $conn->query($sqlUser);
                                         $dataUser = $resultUser->fetch_assoc();
 
-                                        if ($resultSearch->num_rows > 0) {
-                                            $dataExist = "yes";
+                                        if ($resultSearch->num_rows < 1) {
+                                            echo '    <p class="text-danger"><i>Sorry, this trainer do not have any schedule registered yet. Please wait until the schedule is registered.</i></p>';
 
                                         }else {
-                                            array_push($errorMsg,"Error occurred while inserting data. Please submit the registration again.");
+                                            $dataExist = "yes";
                                         }
                                   
                                     }

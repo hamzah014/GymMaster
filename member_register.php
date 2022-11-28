@@ -4,7 +4,7 @@
 <head>
 
     <?php
-        $title = "Dashboard";
+        $title = "Member Register";
         include_once('include/header.php');
     ?>
 
@@ -23,7 +23,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Trainer Registration</h1>
+            <h1>Member Registration</h1>
         </div><!-- End Page Title -->
 
         <section class="section dashboard">

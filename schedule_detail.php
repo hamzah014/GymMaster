@@ -53,11 +53,11 @@
                                         data-bs-target="#member-justified" type="button" role="tab"
                                         aria-controls="member" aria-selected="false">Booking Info</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                <!-- <li class="nav-item" role="presentation">
                                     <button class="nav-link w-100" id="payment-tab" data-bs-toggle="tab"
                                         data-bs-target="#payment-justified" type="button" role="tab"
                                         aria-controls="payment" aria-selected="false">Payment Info</button>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <?php 
@@ -66,6 +66,7 @@
 
                                 //get all data from db
                                 $detail_id = $_GET['detail_id'];  
+                                //$bookid = $_GET['bookid'];  
 
                                 //get data trainer_schedule db
                                 $sqlSearch = "SELECT * 
@@ -95,10 +96,11 @@
                                 $name = $trainerData['name'];
                                 $address = $trainerData['address'];
                                 $birthDate = $trainerData['birthDate'];
+                                $profilePic = $trainerData['profilePic'];
 
                                 $approveStatus = 'approved';
 
-                                //get data booking
+                                //get data member booking
                                 $sqlSearch3 = "SELECT booking.id as bookid,booking.trainer_id,booking.member_id,booking.bookcode,booking.schedule_id,booking.applyDateTime,
                                                 booking.approveTrainer,booking.approveAdmin,booking.rateTrainer,booking.status as book_status,
                                                 users.id as userid, users.gen_id, users.username, users.name,
@@ -106,11 +108,11 @@
                                                 FROM booking
                                                 INNER JOIN users ON booking.member_id = users.id
                                                 INNER JOIN users_profile ON booking.member_id = users_profile.user_id
-                                                where booking.schedule_id='$detail_id' AND booking.status='$approveStatus'";
+                                                where booking.schedule_id='$detail_id'";
 
                                         
                                 $resultSearch3 = $conn->query($sqlSearch3);
-
+                                
                             ?>
 
                             <div class="tab-content pt-2" id="schedulefiedContent">
@@ -134,6 +136,30 @@
                                 </div>
                                 <div class="tab-pane fade p-3" id="trainer-justified" role="tabpanel"
                                     aria-labelledby="trainer-tab">
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label "><b>Profile Picture</b></div>
+                                        <div class="col-lg-9 col-md-8">
+                                            
+                                            <?php 
+                                                $dirProfile = "assets/img/profile/";
+                                                if($profilePic == ""){
+                                            ?>
+
+                                            <img src="assets/img/user_profile.png" alt="Profile" class="rounded-circle" style="width:10%">
+                                                
+                                            <?php
+                                                }else{
+                                            ?>
+
+                                            <img src="<?php echo $dirProfile.$profilePic ?>" alt="Profile" class="rounded-circle" style="width:10%">
+                                                
+                                            <?php
+                                                }
+                                            ?>
+
+                                        </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label "><b>Full Name</b></div>
@@ -281,12 +307,6 @@
 
                                     ?>
 
-                                </div>
-                                <div class="tab-pane fade p-3" id="payment-justified" role="tabpanel"
-                                    aria-labelledby="payment-tab">
-
-                                    payment
-                                    
                                 </div>
                                 
                             </div><!-- End Default Tabs -->

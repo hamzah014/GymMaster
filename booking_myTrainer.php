@@ -80,6 +80,12 @@
                                             while($searchData = $resultSearch->fetch_assoc()) {
                                                 
                                                 $count++;
+
+                                                $bookId = $searchData['bookid'];
+
+                                                $getFollowup = "SELECT * FROM followup WHERE book_id='$bookId'";
+                                                $resultSearch2 = $conn->query($getFollowup);
+                                                $reiewCount = $resultSearch2->num_rows;
                                     ?>  
 
                                         <tr>
@@ -170,11 +176,11 @@
                                                 <a class="btn btn-danger btn-sm" href="booking_approveStatus.php?bookid=<?php echo $searchData['bookid']; ?>&status=0&role=2">Rejected</a>
                                             
                                                 <?php
-                                                    }elseif($currentStatus=="approved"){
+                                                    }elseif($currentStatus=="approved" || $currentStatus=='completed'){
                                                 ?>
 
-                                                <a class="btn btn-info btn-sm" href="schedule_detail.php?detail_id=<?php echo $searchData['trainid'] ?>">See Details</a>
-                                                <a class="btn btn-success btn-sm" href="#">Mark as Completed</a>
+                                                <a class="btn btn-info btn-sm" href="booking_detail.php?detail_id=<?php echo $searchData['bookid']; ?>">See Details</a>
+                                                <a <?php if($reiewCount>0){echo 'hidden';} ?> class="btn btn-success btn-sm" href="booking_trainerReview.php?bookid=<?php echo $searchData['bookid']; ?>">Review Session</a>
                                             
                                                 <?php
                                                     }
