@@ -128,7 +128,9 @@
                                     trainer_schedule.endTime, trainer_schedule.status as schedule_status,
                                     users.id as userid,users.gen_id,users.name 
                                     FROM trainer_schedule 
-                                    INNER JOIN users ON trainer_schedule.trainer_id = users.id LIMIT 1";
+                                    INNER JOIN users ON trainer_schedule.trainer_id = users.id 
+                                    WHERE trainer_schedule.id = '$schedule_id' 
+                                    LIMIT 1";
 
                                     $resultSearch = $conn->query($sqlSearch);
                                     $searchData = $resultSearch->fetch_assoc();
