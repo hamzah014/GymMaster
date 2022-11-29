@@ -182,6 +182,11 @@
 
                             <p class="text-info bold-text">
                                 <b><i> ** <br/>
+                                Bank Information :
+                                <br/>Bank Name : CIMB Bank
+                                <br/>Account Holder Name : Gold Gym Master
+                                <br/>Account Number : 789424848974
+                                <hr/>
                                 This the list of amount payment before and after completing session slot.
                                 <br/>
                                 Deposit/1st Payment : RM100 
