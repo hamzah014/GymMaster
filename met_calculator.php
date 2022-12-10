@@ -104,7 +104,7 @@
 
                                         $calorie = $total / 200;
 
-                                        echo '<h3><b>Total Calories Burned :</b> '.$calorie.'</h3>';
+                                        echo '<h3><b>Total Calories Burned :</b> '.$calorie.' kcal</h3>';
                                   
                                     }
 

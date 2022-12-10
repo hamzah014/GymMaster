@@ -109,6 +109,13 @@
             </ul>
         </li><!-- End Components Nav -->
 
+        <li class="nav-item" <?php if($roleuser != 'member'){ echo 'hidden';} ?>>
+            <a class="nav-link collapsed" href="activity_my.php">
+                <i class="bi bi-calendar3"></i>
+                <span>My Activity</span>
+            </a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="dietplan.php">
                 <i class="ri-restaurant-line"></i>
