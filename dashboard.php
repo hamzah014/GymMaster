@@ -165,8 +165,8 @@
 
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <iframe class="vd-gallery"   src="https://www.youtube.com/embed/ySwgYYgRZvE" title="Beginner Full Body Gym Workout" frameborder="0" 
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                <iframe class="vd-gallery"  src="https://www.youtube.com/embed/0iaMFDNII3E" title="10 Days Burn BELLY FAT CHALLENGE | KIAT JUD DAI" frameborder="0" 
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                         </div>
                                     </div>
                                 </div>
@@ -181,9 +181,8 @@
 
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <iframe class="vd-gallery" src="https://www.youtube.com/embed/YvFWg-oUlG8" title="HOW TO USE GYM EQUIPMENT | Lower Body Machines" 
-                                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                                            </iframe>
+                                            <iframe class="vd-gallery" src="https://www.youtube.com/embed/CIxNJbit9BA" title="Half An Hour Weight Loss - 30 Min Home Workout To Burn Fat" frameborder="0" 
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                         </div>
                                     </div>
                                 </div>

@@ -110,6 +110,13 @@
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
+            <a class="nav-link collapsed" href="dietplan.php">
+                <i class="ri-restaurant-line"></i>
+                <span>Diet Plan Info</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" href="met_calculator.php">
                 <i class="bi bi-calculator"></i>
                 <span>MET Calculator</span>
