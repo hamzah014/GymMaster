@@ -28,22 +28,13 @@
 
         <section class="section dashboard">
             <div class="row">
-                <div class="card info-card sales-card align-items-center">
+                <div class="card info-card sales-card">
                     <div class="card-body row">
 
-                        <div class="align-items-center pt-5 col-md-6 text-center">
+                        <div class="pt-5 col-12 text-center">
                             <div>
-                                <img src="assets/img/diet/diet1.png" alt="" srcset="">
-                            </div>
-                        </div>
-                        <div class="align-items-center pt-5 col-md-6 text-center">
-                            <div>
-                                <img src="assets/img/diet/diet3.png" alt="" srcset="">
-                            </div>
-                        </div>
-                        <div class="align-items-center pt-5 col-md-12 text-center">
-                            <div>
-                                <img src="assets/img/diet/diet2.png" alt="" srcset="">
+                                <h3>Here is the diet plan that we recommend our member to follow : </h3>
+                                <img src="assets/img/diet/diet1.png" alt="" style="width:50%">
                             </div>
                         </div>
                     </div>
