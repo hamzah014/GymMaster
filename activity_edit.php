@@ -180,7 +180,7 @@
 
                                 //show error message if there is any error catch
                                 if(!empty($errorMsg)){
-            
+ 
                                   echo '<div class="pt-1 pb-1">';
                                   echo '<p class="text-danger">Please complete the form to proceed calculation.</p>';
                                   echo '  <ul>';

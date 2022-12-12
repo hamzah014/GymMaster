@@ -180,7 +180,7 @@
                                                 ?>
 
                                                 <a class="btn btn-info btn-sm" href="booking_detail.php?detail_id=<?php echo $searchData['bookid']; ?>">See Details</a>
-                                                <a <?php if($reiewCount>0){echo 'hidden';} ?> class="btn btn-success btn-sm" href="booking_trainerReview.php?bookid=<?php echo $searchData['bookid']; ?>">Review Session</a>
+                                                <a <?php if($reiewCount>0){echo 'hidden';} ?> class="btn btn-success btn-sm" href="booking_trainerReview.php?bookid=<?php echo $searchData['bookid']; ?>">Session Note</a>
                                             
                                                 <?php
                                                     }

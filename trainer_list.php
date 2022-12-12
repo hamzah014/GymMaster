@@ -44,9 +44,9 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Trainer ID</th>
                                         <th scope="col">Full Name</th>
-                                        <th scope="col">Date of Birth</th>
+                                        <!-- <th scope="col">Date of Birth</th> -->
                                         <th scope="col">Email</th>
-                                        <th scope="col">Address</th>
+                                        <!-- <th scope="col">Address</th> -->
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -75,9 +75,9 @@
                                                 echo '    <th scope="row">'.$count.'</th>';
                                                 echo '    <td>'.$dataTrainer['gen_id'].'</td>';
                                                 echo '    <td>'.$dataTrainer['name'].'</td>';
-                                                echo '    <td>'.$dataTrainer['birthDate'].'</td>';
+                                                // echo '    <td>'.$dataTrainer['birthDate'].'</td>';
                                                 echo '    <td>'.$dataTrainer['username'].'</td>';
-                                                echo '    <td>'.$dataTrainer['address'].'</td>';
+                                                // echo '    <td>'.$dataTrainer['address'].'</td>';
                                     ?>  
                                                 <td>
                                                     <a <?php if($roleuser != 'admin'){ echo 'hidden';} ?> class="btn btn-info" href="users_edit.php?edit_id=<?php echo $dataTrainer['user_id']; ?>&edit_role=<?php echo $role_trainer; ?>">Edit</a>
