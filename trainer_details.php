@@ -125,14 +125,14 @@
                                         <div class="col-lg-9 col-md-8"><?php echo $name; ?></div>
                                     </div>
 
-                                    <div class="row" <?php if($role=='admin'){echo 'hidden';} //hidden birthdate for admin ?>>
+                                    <!-- <div class="row" <?php if($role=='admin'){echo 'hidden';} //hidden birthdate for admin ?>>
                                         <div class="col-lg-3 col-md-4 label">Date of Birth</div>
                                         <div class="col-lg-9 col-md-8"><?php echo $birthDate; ?></div>
                                     </div>
                                     <div class="row" <?php if($role=='admin'){echo 'hidden';} //hidden address for admin ?>>
                                         <div class="col-lg-3 col-md-4 label">Address</div>
                                         <div class="col-lg-9 col-md-8"><?php echo $address; ?></div>
-                                    </div>
+                                    </div> -->
                                     <div class="row" <?php if($role=='admin'){echo 'hidden';} //hidden details for admin ?> >
                                         <div class="col-lg-3 col-md-4 label">Description/Bio</div>
                                         <div class="col-lg-9 col-md-8">
